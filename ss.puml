@@ -1,0 +1,411 @@
+@startuml
+class com.example.dispatchcentre.DispatchCentreApplication {
++ {static} void main(String[])
++ MybatisPlusInterceptor mybatisPlusInterceptor()
+}
+class com.example.dispatchcentre.common.utils.DateUtil {
++ {static} DateUtil du
++ {static} SimpleDateFormat dateFormat
+- {static} SimpleDateFormat shortSdf
+- {static} Log log
++ {static} String DEF_DATE_FORMAT_STR
++ {static} DateUtil getInstance()
++ {static} String sqlDateToString(java.sql.Date,String)
++ {static} String sqlTimestampToString(java.sql.Timestamp,String)
++ {static} java.sql.Date stringToSqlDate(String,String)
++ {static} java.sql.Timestamp stringToSqlTimestamp(String,String)
++ {static} java.sql.Date dateToSqlDate(Date,String)
++ {static} String dateToString(Date,String)
++ {static} Date stringToDate(String,String)
++ {static} Date getCurrentDate()
++ {static} String getCurrentDateToString(String)
++ {static} Date getDateMonthBetween(Date,int)
++ {static} Date getDateBetween(Date,int)
++ {static} String getDateBetween_String(Date,int,String)
++ {static} String stringDateTime(Date,String)
++ {static} String stringDateTime(Object,String)
++ {static} Date dateAdd(Date,int,int)
++ {static} Date dateString(String)
++ {static} String dateToString(Date)
++ {static} Date monthlyFirstDate(Date)
++ {static} Date monthlyEndDate(Date)
++ {static} int daysBetweenDates(Date,Date)
++ {static} String getWeekOfMonths(String)
++ {static} String getWeekOfYears(String)
++ {static} boolean compareTime(String)
++ {static} boolean compareTime2Before(String,String)
++ {static} int getMonthsOfYears(String)
++ {static} int getQuarterOfYears(String)
++ {static} long dateDiff(String,String,String,int)
++ {static} String getDayStartTime(Date)
++ {static} String getDayEndTime(Date)
++ {static} String getWeekDayStartTime(Date)
++ {static} String getWeekDayEndTime(Date)
++ {static} String getMonthStartTime(Date)
++ {static} String getMonthEndTime(Date)
++ {static} String getQuarterStartTime(Date)
++ {static} String getQuarterEndTime(Date)
++ {static} String getYearStartTime(Date)
++ {static} String getYearEndTime(Date)
++ {static} int weekOfDay(String)
++ {static} String getNowDateString()
++ {static} String getNowDate()
++ {static} String getStrNowDate()
++ {static} int daysBetween(Date,Date)
++ {static} String dealDateFormat(String)
++ {static} String stampToDate(String)
++ {static} void main(String[])
++ {static} Date getCreateTime()
++ {static} Date getMyTime(String)
++ {static} String getCurrentTimeBeforeOneHour(Date,String)
++ {static} String getCurrentTimeEnd(Date)
++ {static} Date getCurrentTimeByCalendar(Date)
+}
+class com.example.dispatchcentre.common.Constans {
++ {static} String SUCCESS_CODE
++ {static} String EXIST_CODE
++ {static} String EXIST_MESSAGE
++ {static} String DELETE_MESSAGE
++ {static} String SUSPEND_MESSAGE
++ {static} String UPDATE_MESSAGE
++ {static} String GROUP_MESSAGE
++ {static} String PHONE_MESSAGE
++ {static} String ADD_MESSAGE
++ {static} String REGISTER_MESSAGE
++ {static} String SENDCODE_MESSAGE
++ {static} String STATUS_MESSAGE
++ {static} String MAKE_MESSAGE
++ {static} String MAKE_MESSAGE_NULL
++ {static} String MAKE_ERROR
++ {static} String PROJECT_EXIST_MESSAGE
++ {static} String PROJECT_EXIST_NAME
++ {static} String QUESTION_EXIST_MESSAGE
++ {static} String QUESTION_COUNT_MESSAGE
++ {static} String PROJECT_EXIST_QUESTION
++ {static} String checkUnsubscribeAction
++ {static} String checkRETURN
++ {static} String COPY_MESSAGE
++ {static} String COPY_EXIT_MESSAGE
++ {static} String NAME_EXIT_MESSAGE
++ {static} String COPY_EXIT_DELETE_MESSAGE
++ {static} String ANSWER_ZERO_MESSAGE
++ {static} String ANSWER_STOP_CODE
++ {static} String ANSWER_STOP_MESSAGE
++ {static} String ANSWER_ZERO_CODE
++ {static} String QUESTION_ANSWER_ZERO_MESSAGE
++ {static} String QUESTION_SEND_ZERO_MESSAGE
++ {static} String QUESTIONNAIRE_NO_CODE
++ {static} String QUESTIONNAIRE_NO_MESSAGE
++ {static} String QUESTIONNAIRE_SEND_CODE
++ {static} String QUESTIONNAIRE_SEND_MESSAGE
++ {static} String QUESTIONNAIRE_CREATE_CODE
++ {static} String QUESTIONNAIRE_CREATE_MESSAGE
++ {static} String LOGOUT_NO_CODE
++ {static} String ADD_FAIL
++ {static} String UPDATE_FAIL
++ {static} String SELECT_FAIL
++ {static} String DELETE_FAIL
++ {static} String LOGIN_MESSAGE
++ {static} String LOGOUT_NO_MESSAGE
++ {static} String LOGIN_USERNAME_MESSAGE
++ {static} String CODE_MESSAGE
++ {static} String CODE_OUTTIME_MESSAGE
++ {static} String LOGIN_PASSWORD_MESSAGE
++ {static} String LOGIN_USERNAME_PASSWORD_MESSAGE
++ {static} String LOGOUT_PERMISSION_MESSAGE
++ {static} String USER_CODE
++ {static} String USER_PASSWORD_MESSAGE
++ {static} String USER_STATUS_CODE
++ {static} String USER_STATUS_MESSAGE
++ {static} String USER_USERNAME_CODE
++ {static} String USER_USERNAME_MESSAGE
++ {static} String USER_DELETE_CODE
++ {static} String USER_DELETE_MESSAGE
++ {static} String USER_UPDATE_CODE
++ {static} String USER_UPDATE_MESSAGE
++ {static} String USER_EMAIL_CODE
++ {static} String USER_EMAIL_MESSAGE
++ {static} String USER_PHONE_CODE
++ {static} String USER_PHONE_MESSAGE
++ {static} String USER_ROLE_DELETE_MESSAGE
++ {static} String ROLE_HAVE_USER
++ {static} String ROLE_NAME_EXIT
++ {static} String USER_ROLE_UPDATE_MESSAGE
++ {static} String ROLE_NO_UPDATE
++ {static} String SCHEDULE_NAME_NO_FOUND
++ {static} String PARAMETER_NO_DELETE
++ {static} String MODEL_EXIST_CODE
++ {static} String MODEL_SORT_EXIT
++ {static} String MODEL_SORT_NULL
++ {static} String MODEL_PARENTID_FALSE
++ {static} String MODEL_DELETE_FAIL
++ {static} String MODEL_NO_PATH_PERMISSION
++ {static} String MODEL_NO_PATH
++ {static} String GROUPNAME_CODE
++ {static} String GROUPNAME_MESSAGE
+}
+class com.example.dispatchcentre.service.impl.TaskServiceImpl {
+- TaskMapper taskMapper
+- FeignApi feignApi
+- AllocationServiceImpl allocationService
++ Long insert(Map<String,Object>)
++ int updatebyId(Task)
++ Task selectbyId(Long)
++ PageInfo selectAll(Map<String,Object>)
++ int deletebyId(Long)
++ PageInfo searchbykey(Map<String,Object>)
++ PageInfo selectOrder(Map<String,Object>)
++ int changeTaskOrderType(Map<String,Object>)
++ Long getOrTaskId(Long)
++ List<Task> selectByDate(Map<String,Object>)
++ PageInfo getGoodListByTaskId(Map<String,Object>)
++ Delivery getDelivery(Map<String,Object>)
++ PageInfo getGoodByTaskId(Map<String,Object>)
+}
+class com.example.dispatchcentre.beans.HttpResponseEntity {
+- String code
+- T data
+- String message
+}
+interface com.example.dispatchcentre.service.AllocationService {
+~ int insertTaskDispatch(Map<String,Object>)
+~ int insertSationDispatch(Allocation)
+~ int updatebyId(Map<String,Object>)
+~ Allocation selectbyId(Map<String,Object>)
+~ PageInfo selectAll(Map<String,Object>)
+~ PageInfo searchbykey(Map<String,Object>)
+~ PageInfo getGoodListByAlloId(Map<String,Object>)
+~ int insertTaskDispatchlist(Map<String,Object>)
+~ int insertWithDrawDispatch(Map<String,Object>)
+}
+class com.example.dispatchcentre.entity.vo.Delivery {
+- PageInfo<Good> pageInfo
+- Task task
+}
+class com.example.dispatchcentre.common.utils.FileOperate {
++ List<String> imageUpload(MultipartFile[],String)
++ int copyFile(String,String,String)
++ boolean deleteDir(File)
+}
+class com.example.dispatchcentre.common.utils.MD5Utils {
+- {static} String[] strDigits
+- {static} String byteToArrayString(byte)
+- {static} String byteToNum(byte)
+- {static} String byteToString(byte[])
++ {static} String getMD5Code(String)
+}
+class com.example.dispatchcentre.entity.Station {
+- {static} long serialVersionUID
+- Long id
+- String name
+- String address
+- String admin
+- Integer stationClass
+- String stationClassName
+}
+class com.example.dispatchcentre.common.utils.UUIDUtil {
++ {static} String getOneUUID()
++ {static} String[] getUUID(int)
+}
+class com.example.dispatchcentre.cors.CorsConfig {
+- CorsConfiguration buildConfig()
++ CorsFilter corsFilter()
+}
+class com.example.dispatchcentre.entity.Task {
+- {static} long serialVersionUID
+- Long id
+- Long orderId
+- Long customerId
+- String customerName
+- Date taskDate
+- Date deadline
+- String taskType
+- String taskStatus
+- String address
+- String postman
+- Long substationId
+- String substation
+- Integer printNumber
+- String creater
+- Date endDate
+- Date getDate
+- Integer version
+}
+class com.example.dispatchcentre.common.utils.HttpRequest {
++ {static} String sendGet(String,String)
++ {static} String sendPost(String,String)
+}
+class com.example.dispatchcentre.controller.TaskAction {
+- Logger logger
+- TaskService taskService
++ HttpResponseEntity addUser(Map<String,Object>)
++ HttpResponseEntity getTasksByCriteria(Map<String,Object>)
++ HttpResponseEntity changeTaskOrderType(Map<String,Object>)
++ HttpResponseEntity selectByDate(Map<String,Object>)
++ HttpResponseEntity getGoodListByTaskId(Map<String,Object>)
++ HttpResponseEntity updateTaskById(Task)
++ HttpResponseEntity getDelivery(Map<String,Object>)
++ HttpResponseEntity getGoodByTaskId(Map<String,Object>)
++ HttpResponseEntity getOrTaskId(Long)
+}
+class com.example.dispatchcentre.entity.Good {
+- {static} long serialVersionUID
+- Long id
+- Long goodId
+- String goodClass
+- String goodSubclass
+- String goodName
+- Long goodNumber
+- String goodUnit
+- Double goodPrice
+- Double goodSale
+- Double goodCost
+- String type
+- String supply
+- String goodFactory
+- String sellDate
+- Byte isReturn
+- Byte isChange
+- String remark
+- Integer classId
+- Integer keyId
+- Date goodDate
+- Integer version
+}
+interface com.example.dispatchcentre.mapper.TaskMapper {
+}
+interface com.example.dispatchcentre.mapper.AllocationMapper {
+}
+class com.example.dispatchcentre.common.utils.EnDecryptUtil {
+- {static} String secretKey
+- {static} String iv
+- {static} String encoding
++ {static} void main(String[])
++ {static} byte[] SHA1Bit(byte[])
++ {static} String SHA1(String)
++ {static} byte[] MD5Bit(byte[])
++ {static} String MD5(String)
++ {static} String encodeBASE64(String)
++ {static} String decodeBASE64(String)
++ {static} byte[] encryptBitAES(byte[],String)
++ {static} byte[] decryptBitAES(byte[],String)
++ {static} String encryptAES(String,String)
++ {static} String decryptAES(String,String)
+- {static} Key getKey(String)
++ {static} String byte2HexStr(byte[])
++ {static} byte[] hexStr2Bytes(String)
++ {static} String d3esEncode(String)
++ {static} String d3esDecode(String)
+}
+class com.example.dispatchcentre.entity.Allocation {
+- {static} long serialVersionUID
+- Long id
+- Long orderId
+- Long taskId
+- Long outStationId
+- Long inStationId
+- String outStationName
+- String inStationName
+- Date allocationDate
+- Byte alloType
+- String distributors
+- String signer
+- Date creatDate
+- Integer version
+}
+interface com.example.dispatchcentre.service.TaskService {
+~ Long insert(Map<String,Object>)
+~ int updatebyId(Task)
+~ Task selectbyId(Long)
+~ PageInfo selectAll(Map<String,Object>)
+~ int deletebyId(Long)
+~ PageInfo searchbykey(Map<String,Object>)
+~ PageInfo selectOrder(Map<String,Object>)
+~ int changeTaskOrderType(Map<String,Object>)
+~ Long getOrTaskId(Long)
+~ List<Task> selectByDate(Map<String,Object>)
+~ PageInfo getGoodListByTaskId(Map<String,Object>)
+~ Delivery getDelivery(Map<String,Object>)
+~ PageInfo getGoodByTaskId(Map<String,Object>)
+}
+class com.example.dispatchcentre.service.impl.AllocationServiceImpl {
+- AllocationMapper allocationMapper
+- TaskServiceImpl taskService
+- FeignApi feignApi
++ int insertTaskDispatch(Map<String,Object>)
++ int insertTaskDispatchlist(Map<String,Object>)
++ int insertWithDrawDispatch(Map<String,Object>)
++ int insertSationDispatch(Allocation)
++ int updatebyId(Map<String,Object>)
++ Allocation selectbyId(Map<String,Object>)
++ PageInfo selectAll(Map<String,Object>)
++ PageInfo searchbykey(Map<String,Object>)
++ PageInfo getGoodListByAlloId(Map<String,Object>)
+}
+class com.example.dispatchcentre.DispatchCentreApplicationTests {
+~ void contextLoads()
+}
+interface com.example.dispatchcentre.feign.FeignApi {
+~ HttpResponseEntity changeOrderStatusById(Map<String,Object>)
+~ HttpResponseEntity getGoodByOrderId(Long)
+~ HttpResponseEntity getOrderByid(Long)
+~ HttpResponseEntity getById(String)
+}
+class com.example.dispatchcentre.controller.AllocationAction {
+- Logger logger
+- AllocationService allocationService
++ HttpResponseEntity addTaskDispatch(Map<String,Object>)
++ HttpResponseEntity insertSationDispatch(Allocation)
++ HttpResponseEntity insertTaskDispatchlist(Map<String,Object>)
++ HttpResponseEntity insertWithDrawDispatch(Map<String,Object>)
++ HttpResponseEntity updateAllocationbyId(Map<String,Object>)
++ HttpResponseEntity getAllocation(Map<String,Object>)
++ HttpResponseEntity getGoodListByAlloId(Map<String,Object>)
++ HttpResponseEntity getByAlloId(Map<String,Object>)
+}
+class com.example.dispatchcentre.entity.Orders {
+- {static} long serialVersionUID
+- Long id
+- String creater
+- Double goodSum
+- String explain
+- String remark
+- Long substationId
+- String substation
+- Date orderDate
+- Date deliveryDate
+- String orderType
+- String orderStatus
+- String customerAddress
+- String customerId
+- String customerName
+- String mobilephone
+- String postcode
+- Integer isInvoice
+- String goodStatus
+- String receiveName
+- Long orNumber
+- String reason
+- Date reDate
+- Integer version
+}
+class com.example.dispatchcentre.common.utils.CommonUtils {
++ {static} String createRandomNum(int)
+}
+
+
+com.example.dispatchcentre.service.TaskService <|.. com.example.dispatchcentre.service.impl.TaskServiceImpl
+com.baomidou.mybatisplus.extension.service.impl.ServiceImpl <|-- com.example.dispatchcentre.service.impl.TaskServiceImpl
+java.io.Serializable <|.. com.example.dispatchcentre.beans.HttpResponseEntity
+com.baomidou.mybatisplus.extension.service.IService <|-- com.example.dispatchcentre.service.AllocationService
+java.io.Serializable <|.. com.example.dispatchcentre.entity.Station
+java.io.Serializable <|.. com.example.dispatchcentre.entity.Task
+java.io.Serializable <|.. com.example.dispatchcentre.entity.Good
+com.baomidou.mybatisplus.core.mapper.BaseMapper <|-- com.example.dispatchcentre.mapper.TaskMapper
+com.baomidou.mybatisplus.core.mapper.BaseMapper <|-- com.example.dispatchcentre.mapper.AllocationMapper
+java.io.Serializable <|.. com.example.dispatchcentre.entity.Allocation
+com.baomidou.mybatisplus.extension.service.IService <|-- com.example.dispatchcentre.service.TaskService
+com.example.dispatchcentre.service.AllocationService <|.. com.example.dispatchcentre.service.impl.AllocationServiceImpl
+com.baomidou.mybatisplus.extension.service.impl.ServiceImpl <|-- com.example.dispatchcentre.service.impl.AllocationServiceImpl
+java.io.Serializable <|.. com.example.dispatchcentre.entity.Orders
+@enduml

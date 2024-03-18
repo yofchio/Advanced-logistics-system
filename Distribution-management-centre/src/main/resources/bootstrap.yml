@@ -1,0 +1,61 @@
+server:
+  port : 8083
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://62.234.23.101:3306/logistics?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: Neu123
+    type: com.alibaba.druid.pool.DruidDataSource
+    hikari:
+        connection-timeout: 10000
+        validation-timeout: 3000
+        idle-timeout: 60000
+        login-timeout: 5
+        max-lifetime: 60000
+        maximum-pool-size: 10
+        minimum-idle: 5
+        read-only: false
+        auto-commit: false #自动提交关闭，事务处理
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 6000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+  application:
+    name: distribution-application  # ????????????? name+file-extension ??nacos?project.yml
+  cloud:
+    nacos:
+      config:
+        server-addr: 62.234.23.101:8848  # nacos??
+        file-extension: yaml   # ???????????
+        namespace: da2783df-bd99-4c9c-abab-1c6c8fd5c257  # ??????.????????????public???????
+        group: DEFAULT_GROUP
+      discovery:
+        server-addr: 62.234.23.101:8848
+        namespace: da2783df-bd99-4c9c-abab-1c6c8fd5c257  #  ?????????
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 10000
+            readTimeout: 600000
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+#  ??????????????
+  typeAliasesPackage: com.example.distributionmanagementcenter.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true # ????????:Table{create_time} -> Entity{createTime}
+    use-generated-keys: true #??jdbc?getGeneratedKeys??????????
+
+
+

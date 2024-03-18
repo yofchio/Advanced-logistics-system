@@ -1,0 +1,71 @@
+
+spring:
+  application:
+    name: biapplication
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://62.234.23.101:3306/logistics?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: Neu123
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 10
+      min-idle: 10
+      max-active: 30
+      max-wait: 6000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filter:
+        slf4j:
+          enabled: true
+#    url: jdbc:mysql://62.234.23.101:3306/logistics?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false
+#    username: root
+#    password: Neu123
+#    druid:
+#      initial-size: 5
+#      min-idle: 5
+#      max-active: 20
+#      max-wait: 6000
+#      time-between-eviction-runs-millis: 60000
+#      min-evictable-idle-time-millis: 30000
+#      test-on-borrow: false
+#      test-on-return: false
+#      pool-prepared-statements: true
+#      max-pool-prepared-statement-per-connection-size: 20
+  #  application:
+  #    name: distribution-application  # ????????????? name+file-extension ??nacos?project.yml
+  cloud:
+    nacos:
+      config:
+        server-addr: 62.234.23.101:8848  # nacos??
+        file-extension: yaml   # ???????????
+        namespace: da2783df-bd99-4c9c-abab-1c6c8fd5c257  # ??????.????????????public???????
+        group: DEFAULT_GROUP
+      discovery:
+        server-addr: 62.234.23.101:8848
+        namespace: da2783df-bd99-4c9c-abab-1c6c8fd5c257  #  ?????????
+#    openfeign:
+#      client:
+#        config:
+#          default:
+#            connectTimeout: 10000
+#            readTimeout: 600000
+
+  data:
+    redis:
+      database: 4
+      host: 62.234.23.101
+      port: 6379
+      password: Neu123
+      timeout: 5000
+
+#yuapi:
+#  client:
+#    access_key: gr86i5u3vt18aj06zq7c80k5qtddxbu8
+#    secret_key: upcu9s1tx0qwcgfyh5zp6h3mcugymgu3
+
+

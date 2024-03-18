@@ -1,0 +1,36 @@
+server:
+  port: 10010 # ????
+spring:
+  application:
+    name: api-gateway # ????
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 62.234.23.101:8848
+        #        server-addr: localhost:8848
+        namespace: da2783df-bd99-4c9c-abab-1c6c8fd5c257
+#        ip:  62.234.23.101
+      config:
+        #dataid ?????application?name?file-extension   api-gateway.yaml
+        server-addr: 62.234.23.101:8848 # ??????
+        #        server-addr: localhost:8848 # ??????
+        file-extension: yaml
+        #nacos???????,????,???true
+        refresh-enabled: true
+        namespace: da2783df-bd99-4c9c-abab-1c6c8fd5c257 # ????
+    #        group: DEFAULT # xx???
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 40000
+            readTimeout: 600000
+
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowedOriginPatterns: "*"
+            allowCredentials: true
