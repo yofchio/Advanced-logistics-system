@@ -6,13 +6,13 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 62.234.23.101:8848
+        server-addr: ip:8848
         #        server-addr: localhost:8848
         namespace: da2783df-bd99-4c9c-abab-1c6c8fd5c257
-#        ip:  62.234.23.101
+#        ip:  ip
       config:
         #dataid ?????application?name?file-extension   api-gateway.yaml
-        server-addr: 62.234.23.101:8848 # ??????
+        server-addr: ip:8848 # ??????
         #        server-addr: localhost:8848 # ??????
         file-extension: yaml
         #nacos???????,????,???true
